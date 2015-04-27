@@ -9,16 +9,21 @@ RSpec.describe 'idea creation' do
      end
     it 'can be edited' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(kenny)
-      idea = kenny.ideas.create(name: "BOOM", description: "KENSTER")
 
-      visit ideas_path
+      visit new_idea_path
+
+      fill_in "idea[name]", with: "Acquire Currency"
+      fill_in "idea[description]", with: "Find females"
+
+      click_link_or_button "Create Idea"
+
       click_link_or_button "Edit"
       fill_in "idea[name]", with: "Learn to code"
       fill_in "idea[description]", with: "ASAP"
       click_link_or_button "Update"
 
       expect(page).to have_content("Learn to code")
-      expect(page).to_not have_content("KENSTER")
+      expect(page).to_not have_content("Find females")
     end
 
   end 

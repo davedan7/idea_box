@@ -18,7 +18,7 @@ RSpec.describe 'idea creation' do
 
       expect(page).to have_content("BOOM")
       expect(page).to have_content("KENSTER")
-      expect(page).to have_content("Your silly idea")
+      expect(page).to have_content("Your Ideas")
     end
 
   end 

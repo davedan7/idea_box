@@ -1,2 +1,4 @@
 <h2>Category <%= @category.id %>: <%= @category.name %></h2>
+<%= button_to "Remove", admin_category_path(@category), method: :delete %><br>
+<%= button_to "Create New Category", new_admin_category_path, method: :get %><br>
 <%= link_to "Categories Index", admin_categories_path %>

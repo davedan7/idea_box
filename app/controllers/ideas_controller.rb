@@ -1,8 +1,12 @@
 class IdeasController < ApplicationController
 
+  # def index
+  #   @ideas = current_user.ideas.all
+  # end
   def index
-    @ideas = current_user.ideas.all
+    @ideas = current_user.ideas.all.map { |idea| IdeaPresenter.new(idea) }
   end
+
   def new
     @idea = current_user.ideas.new  
   end
@@ -15,7 +19,7 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.new(idea_params)
     if @idea.save
       flash[:success] = "That one's a zinger!"
-      redirect_to @idea
+      redirect_to ideas_path
     else
       flash[:errors] = @idea.errors.full_messages.join(", ")
       render :new
@@ -45,7 +49,8 @@ class IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:name, 
-                                 :description)
+                                 :description,
+                                 :category_id)
   end
 
 end

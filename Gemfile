@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'database_cleaner'
   gem 'web-console', '~> 2.0'
 
   gem 'spring'
